@@ -18,49 +18,31 @@ class PostsSeeder extends Seeder
         DB::table('posts')->insert([
             'content' => "Ucrania vs Rusia",
             'user_id' => 1,
-            'likes' => 5000,
+            //'likes' => 5000,
         ]);
 
         DB::table('posts')->insert([
             'content' => "Venezuela nos invade",
             'user_id' => 1,
-            'likes' => 2500,
+            //'likes' => 2500,
         ]);
 
         DB::table('posts')->insert([
             'content' => "Ganamos la guerra",
             'user_id' => 1,
-            'likes' => 1250,
+            //'likes' => 1250,
         ]);
 
         DB::table('posts')->insert([
             'content' => "Covid 2",
-            'user_id' => 1,
-            'likes' => 625,
+            'user_id' => 2,
+            //'likes' => 625,
         ]);
 
         DB::table('posts')->insert([
             'content' => "Elon Musk llega a la luna",
             'user_id' => 2,
-            'likes' => 500,
-        ]);
-
-        DB::table('posts')->insert([
-            'content' => "Apocalipsis zombie en marte",
-            'user_id' => 2,
-            'likes' => 250,
-        ]);
-
-        DB::table('posts')->insert([
-            'content' => "Alcanzo la inmortalidad",
-            'user_id' => 2,
-            'likes' => 125,
-        ]);
-
-        DB::table('posts')->insert([
-            'content' => "Veo el fin del cosmos",
-            'user_id' => 2,
-            'likes' => 50,
+            //'likes' => 500,
         ]);
     }
 }
