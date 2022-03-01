@@ -17,10 +17,10 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->text('content');
             //$table->integer('likes')->nullable();
-            $table->foreignId('user_id')/*->references('id')->on('users')*/;
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            //$table->foreign('user_id')->references('id')->on('users');
         });
     }
 
