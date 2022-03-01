@@ -19,6 +19,8 @@
             El usuario no ha publicado ningún post
         </div>
     @endforelse
+    <div class="mt-3"> {{ $posts->links() }} </div>
+    
 </div>
 
 @endsection
