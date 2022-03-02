@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +22,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/ver/posts/{user}', [App\Http\Controllers\PostController::class, 'index']);
+Route::get('/{user}', [PostController::class, 'index']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('posts', PostController::class)
+    ->except(['index']);
+
+Route::get('/home', [HomeController::class, 'index'])
+    ->name('home');
