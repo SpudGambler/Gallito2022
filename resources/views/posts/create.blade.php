@@ -5,15 +5,7 @@
 <div class="container">
     <h1>Crear Una Nueva Publicación</h1>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    @include('layouts.subview-form-errors')
 
     {!! Form::open(['route' => 'posts.store', 'method' => 'post']) !!}
 

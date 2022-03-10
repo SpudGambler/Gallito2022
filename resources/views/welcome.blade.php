@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Grayscale - Start Bootstrap Theme</title>
-        <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+        <title>Gallito</title>
+        <link rel="icon" type="image/x-icon" href="{{ URL::to('/') }}/assets/gallo.png" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -19,7 +19,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Gallito</a>
+                <a class="navbar-brand" href="{{ route('main') }}">Gallito</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -28,7 +28,40 @@
                     @if (Route::has('login'))
                         <ul class="navbar-nav ms-auto">
                             @auth
-                            <li class="nav-item"><a class="nav-link" href="#projects">{{ Auth::user()->name }}</a></li>
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        Publicaciones
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('view_posts', Auth::user()->id) }}">
+                                            {{ __('Ver Publicaciones') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ url('/posts/create') }}">
+                                            {{ __('Crear Nueva') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }}
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('view_posts', Auth::user()->id)}}">
+                                            {{ __('Perfil') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            {{ __('Cerrar Sesión') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
                             @else
                                 <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Iniciar Sesion</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Registrarse</a></li>
@@ -50,6 +83,7 @@
                                     <a class="btn btn-primary" href="{{ url('/users/view') }}">Conoce más usuarios</a>
                                 @else
                                     <a class="btn btn-primary" href="{{ route('register') }} ">Unete Ahora</a>
+                                    <a class="btn btn-primary" href="{{ url('/users/view') }}">Más usuarios</a>
                                 @endauth
                             </ul>
                         @endif

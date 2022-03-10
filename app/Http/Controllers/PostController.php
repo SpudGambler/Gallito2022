@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -53,7 +54,7 @@ class PostController extends Controller
         $post -> user_id = Auth::id();
         $post -> save();
 
-        return redirect(route('home'));
+        return redirect(route('view_posts', Auth::id()));
     }
 
     /**
@@ -75,7 +76,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -85,9 +86,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostCreateRequest $request, Post $post)
     {
-        //
+        $post->fill($request->input());
+        $post->save();
+
+        return redirect(route('view_posts', $post->user_id));
     }
 
     /**
@@ -98,6 +102,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+
+        $post->delete();
+
+        return redirect(route('view_posts', $post->user_id));
     }
 }

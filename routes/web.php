@@ -20,19 +20,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('main');
 
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])
     ->name('home');
 
-Route::get('/{user}', [PostController::class, 'index']);
+Route::get('/{user}', [PostController::class, 'index'])->name('view_posts');
 
 Route::get('/users/view', [UserController::class, 'index']);
 
 Route::resource('users', UserController::class)
     ->except(['index']);
 
-Route::resource('posts', PostController::class)
-    ->except(['index']);
+Route::resource('posts', PostController::class);
