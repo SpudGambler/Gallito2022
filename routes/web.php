@@ -24,14 +24,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])
-    ->name('home');
+Route::get('/u/{user}', [PostController::class, 'index'])->name('view_posts');
 
-Route::get('/{user}', [PostController::class, 'index'])->name('view_posts');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    Route::resource('posts', PostController::class)
+        ->except(['index']);
+});
 
 Route::get('/users/view', [UserController::class, 'index']);
 
 Route::resource('users', UserController::class)
     ->except(['index']);
-
-Route::resource('posts', PostController::class);

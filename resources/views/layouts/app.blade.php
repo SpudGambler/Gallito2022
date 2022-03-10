@@ -81,6 +81,10 @@
         </main>
     </div>
 
+    <div class="d-flex justify-content-center">
+        <div class="copyright">Copyright &copy; SpudCompany 2022</div>
+    </div>
+
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->

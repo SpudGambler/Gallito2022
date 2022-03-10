@@ -81,7 +81,7 @@
                                 <h5 class="card-title">{{$user->name}}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">{{$user->created_at->diffForHumans()}}</h6>
                                 <p class="card-text" style="margin-bottom: 5%">{{$user->email}}</p>
-                                <a href="{{ url('/') }}/{{$user->id}}" class="card-link">Ver Posts</a>
+                                <a href="{{ url('/u') }}/{{$user->id}}" class="card-link">Ver Posts</a>
                             </div>
                         </div>
                     @empty
@@ -91,6 +91,9 @@
                     @endforelse
                 </div>
                 <div class="mt-3"> {{ $users->links() }} </div>
+            </div>
+            <div class="d-flex justify-content-center" style="color: white">
+                <div class="copyright">Copyright &copy; SpudCompany 2022</div>
             </div>
         </section>
         <!-- Bootstrap core JS-->
