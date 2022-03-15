@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('created_at','desc')->simplePaginate(6);
+        $users = User::orderBy('name','ASC')->simplePaginate(6);
         return view('users.index', compact('users'));
     }
 
@@ -42,6 +42,7 @@ class UserController extends Controller
         $user -> fill($request->input());
         $user -> password = Hash::make($request->input('password'));
         $user -> save();
+        return redirect(route('main'));
     }
 
     /**
@@ -61,9 +62,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        return view('users.profile');
     }
 
     /**
@@ -84,8 +85,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect(route('main'));
     }
 }

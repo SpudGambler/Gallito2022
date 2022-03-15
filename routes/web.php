@@ -26,8 +26,12 @@ Auth::routes();
 
 Route::get('/u/{user}', [PostController::class, 'index'])->name('view_posts');
 
+Route::get('/users/create', [UserController::class, 'create'])->name('create_user');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    Route::get('/users/profile', [UserController::class, 'edit'])->name('profile');
 
     Route::resource('posts', PostController::class)
         ->except(['index']);
@@ -36,4 +40,4 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/users/view', [UserController::class, 'index']);
 
 Route::resource('users', UserController::class)
-    ->except(['index']);
+    ->except(['index','create']);

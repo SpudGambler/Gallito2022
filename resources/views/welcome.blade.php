@@ -49,7 +49,7 @@
                                         {{ Auth::user()->name }}
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('view_posts', Auth::user()->id)}}">
+                                        <a class="dropdown-item" href="{{ route('profile')}}">
                                             {{ __('Perfil') }}
                                         </a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -64,7 +64,7 @@
                                 </li>
                             @else
                                 <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Iniciar Sesion</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Registrarse</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('create_user') }}">Registrarse</a></li>
                             @endauth
                         </ul>
                     @endif
@@ -82,7 +82,7 @@
                                 @auth
                                     <a class="btn btn-primary" href="{{ url('/users/view') }}">Conoce más usuarios</a>
                                 @else
-                                    <a class="btn btn-primary" href="{{ route('register') }} ">Unete Ahora</a>
+                                    <a class="btn btn-primary" href="{{ route('create_user') }} ">Unete Ahora</a>
                                     <a class="btn btn-primary" href="{{ url('/users/view') }}">Más usuarios</a>
                                 @endauth
                             </ul>
